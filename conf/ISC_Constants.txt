@@ -1,0 +1,7 @@
+#define MyAppName "VKPlayer"
+#define MyAppExeName "VKPlayer.exe"
+#define MyAppIco "VKPlayer.ico"
+#define MyAppVersion "1.3.0"
+#define MyAppURL "http://vk.com/club45060053"
+#define MyAppPublisher "Alexander Pasechnik"
+#define JDKFolder "C:\Program Files (x86)\Java\jdk1.7"
