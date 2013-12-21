@@ -28,4 +28,10 @@ public class SuggestedMusicPlayList extends AbstractPlaylist {
     public List<Song> getSongsList() {
         return audioService.getSuggestedSongsList();
     }
+
+    @Override
+    public void refresh() {
+        // TODO: implement me please!
+        throw new UnsupportedOperationException();
+    }
 }

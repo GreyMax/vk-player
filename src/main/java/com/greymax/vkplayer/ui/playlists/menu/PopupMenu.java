@@ -37,6 +37,11 @@ public class PopupMenu extends JPopupMenu {
         editSong.setActionCommand(PopupMenuListener.EDIT);
         editSong.addActionListener(listener);
 
+        // lyrics
+        JMenuItem lyrics = new JMenuItemML(Constants.PLAYER.PLAYLIST.POPUP_MENU_LYRICS);
+        lyrics.setActionCommand(PopupMenuListener.LYRICS);
+        lyrics.addActionListener(listener);
+
         if ( tab == Constants.PLAYER.PLAYLIST.MY_MUSIC_TAB_INDEX
                 || tab == Constants.PLAYER.PLAYLIST.FRIENDS_MUSIC_TAB_INDEX
                 || tab == Constants.PLAYER.PLAYLIST.SEARCH_TAB_INDEX
@@ -54,5 +59,7 @@ public class PopupMenu extends JPopupMenu {
             add(editSong);
             add(deleteFromMyMusic);
         }
+
+        add(lyrics);
     }
 }

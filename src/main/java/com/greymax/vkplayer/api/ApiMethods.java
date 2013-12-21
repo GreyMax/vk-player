@@ -4,6 +4,7 @@ public class ApiMethods {
 
     public static class Audio {
         public static final String GET = "audio.get";
+        public static final String GET_LYRICS = "audio.getLyrics";
         public static final String SEARCH = "audio.search";
         public static final String GET_RECOMMENDATIONS = "audio.getRecommendations";
         public static final String EDIT = "audio.edit";

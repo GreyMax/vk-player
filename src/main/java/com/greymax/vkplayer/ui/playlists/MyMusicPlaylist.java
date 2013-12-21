@@ -31,6 +31,7 @@ public class MyMusicPlaylist extends AbstractPlaylist{
     }
 
     public void refresh() {
+        int index = getSelectedSongIndex();
         setModel(new PlaylistTableModel(audioService.getMySongsForPlaylist(playerForm.getLoggedUser()), cols));
         getColumnModel().getColumn(0).setPreferredWidth(15);
         getColumnModel().getColumn(1).setPreferredWidth(200);
@@ -38,5 +39,6 @@ public class MyMusicPlaylist extends AbstractPlaylist{
         getColumnModel().getColumn(0).setResizable(false);
         getColumnModel().getColumn(1).setResizable(false);
         getColumnModel().getColumn(2).setResizable(false);
+        changeSelection(index, 1, false, false);
     }
 }

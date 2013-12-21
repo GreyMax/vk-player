@@ -72,6 +72,7 @@ public class Constants {
             public static final String POPUP_MENU_DOWNLOAD = "player.playlist.popup.menu.download";
             public static final String POPUP_MENU_POST_TO_WALL = "player.playlist.popup.menu.wall.post";
             public static final String POPUP_MENU_EDIT = "player.playlist.popup.menu.edit";
+            public static final String POPUP_MENU_LYRICS = "player.playlist.popup.menu.lyrics";
 
             public static final int MY_MUSIC_TAB_INDEX = 0;
             public static final int SUGGESTED_MUSIC_TAB_INDEX = 1;
@@ -94,6 +95,10 @@ public class Constants {
             public static final String TITLE = "player.edit.dialog.title";
             public static final String ARTIST_LABEL = "player.edit.dialog.artist.label";
             public static final String TITLE_LABEL = "player.edit.dialog.title.label";
+        }
+
+        public static class LYRICS_DIALOG {
+            public static final String TITLE = "player.lyrics.dialog.title";
         }
     }
 

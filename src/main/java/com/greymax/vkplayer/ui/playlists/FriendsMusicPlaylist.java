@@ -30,6 +30,12 @@ public class FriendsMusicPlaylist extends AbstractPlaylist {
         return audioService.getFriendsSongsList();
     }
 
+    @Override
+    public void refresh() {
+        // TODO: implement me please!
+        throw new UnsupportedOperationException();
+    }
+
     public void showMusicForUser(User friend) {
         if(null != friend && null != friend.getUid()) {
             setModel(new PlaylistTableModel(

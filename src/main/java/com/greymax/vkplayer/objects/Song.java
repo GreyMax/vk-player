@@ -7,6 +7,8 @@ import org.json.JSONObject;
 
 public class Song {
 
+    public static final String MP3_EXTENSION = ".mp3";
+    public static final String DISPLAY_NAME_DELIMITER = " - ";
     private static Logger logger = Logger.getLogger(Song.class);
 
     private Long id;
@@ -15,6 +17,7 @@ public class Song {
     private int duration;
     private String url;
     private String artist;
+    private Long lyricsId;
 
     public Song() {
         // emptiness
@@ -28,6 +31,7 @@ public class Song {
             this.artist = jsonSong.getString("artist");
             this.title = jsonSong.getString("title");
             this.duration = jsonSong.getInt("duration");
+            this.lyricsId = jsonSong.has("lyrics_id") ? jsonSong.getLong("lyrics_id") : null;
         } catch (Exception e) {
             logger.error("Can not parse song from json:", e);
         }
@@ -65,14 +69,25 @@ public class Song {
         return url;
     }
 
+    public Long getLyricsId() {
+        return lyricsId;
+    }
+
+    public void setLyricsId(Long lyricsId) {
+        this.lyricsId = lyricsId;
+    }
+
+
+    // Utils
+
     public String getDisplayName() {
-        return escape(getArtist() + " - " + getTitle());
+        return escape(getArtist() + DISPLAY_NAME_DELIMITER + getTitle());
     }
 
     public String getFullDisplayName() {
         return getDisplayName().length() < 151
-                ? getDisplayName() + ".mp3"
-                : getDisplayName().substring(0, 150).trim() + ".mp3";
+                ? getDisplayName() + MP3_EXTENSION
+                : getDisplayName().substring(0, 150).trim() + MP3_EXTENSION;
     }
 
     public String getDurationForDisplay() {

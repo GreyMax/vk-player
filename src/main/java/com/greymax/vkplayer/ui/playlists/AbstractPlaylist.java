@@ -26,6 +26,7 @@ public abstract class AbstractPlaylist extends JTable {
 
     protected abstract void init();
     public abstract List<Song> getSongsList();
+    public abstract void refresh();
 
     public void highlightPlaingSong(int index) {
         changeSelection(index, 1, false, false);

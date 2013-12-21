@@ -5,6 +5,7 @@ import com.greymax.vkplayer.api.ApiMethods;
 import com.greymax.vkplayer.api.params.P;
 import com.greymax.vkplayer.objects.Song;
 import com.greymax.vkplayer.objects.User;
+import com.greymax.vkplayer.ui.VkPlayerForm;
 import org.apache.log4j.Logger;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -113,22 +114,6 @@ public class AudioService {
         return list;
     }
 
-    public List<Song> getMySongsList() {
-        return mySongsList;
-    }
-
-    public List<Song> getSuggestedSongsList() {
-        return suggestedSongsList;
-    }
-
-    public List<Song> getFriendsSongsList() {
-        return friendsSongsList;
-    }
-
-    public List<Song> getSearchSongsList() {
-        return searchSongsList;
-    }
-
     public void addSongToMyMusic(User user, Song song){
         try {
             P params = new P("aid="+song.getId()+",oid="+ song.getOwner_id());
@@ -160,6 +145,56 @@ public class AudioService {
         }
     }
 
+    public String getLyrics(Song song) {
+        if (null == song.getLyricsId())
+            return null;
+
+        String result = null;
+        User loggedUser = VkPlayerForm.getInstance().getLoggedUser();
+        try {
+            P params = new P("lyrics_id=" + song.getLyricsId());
+            JSONObject jsonResult = new JSONObject(Api.make(loggedUser.getToken(), ApiMethods.Audio.GET_LYRICS, params));
+            result = ((JSONObject) jsonResult.get("response")).getString("text");
+        } catch (Exception ex) {
+            logger.error("Can not get lyrics for song: " + song.getDisplayName(), ex);
+        }
+
+        return result;
+    }
+
+    public void editSongLyrics(Song song, String text) {
+        if (null != song.getLyricsId()) {
+            User loggedUser = VkPlayerForm.getInstance().getLoggedUser();
+            try {
+                P params = new P("aid=" + song.getId()
+                        + ",oid=" + song.getOwner_id()
+                        + ",no_search=0"
+                        + ",artist=" + song.getArtist()
+                        + ",title=" + song.getTitle()
+                        + ",text=" + text);
+                Api.make(loggedUser.getToken(), ApiMethods.Audio.EDIT, params);
+            } catch (Exception ex) {
+                logger.error("Can not get lyrics for song: " + song.getDisplayName(), ex);
+            }
+        }
+    }
+
+    public List<Song> getMySongsList() {
+        return mySongsList;
+    }
+
+    public List<Song> getSuggestedSongsList() {
+        return suggestedSongsList;
+    }
+
+    public List<Song> getFriendsSongsList() {
+        return friendsSongsList;
+    }
+
+    public List<Song> getSearchSongsList() {
+        return searchSongsList;
+    }
+
     // Utils
     private JSONArray make(User user, String method, P params) {
         try {
@@ -170,5 +205,4 @@ public class AudioService {
         }
         return null;
     }
-
 }

@@ -30,6 +30,12 @@ public class SearchMusicPlaylist extends AbstractPlaylist{
         return audioService.getSearchSongsList();
     }
 
+    @Override
+    public void refresh() {
+        // TODO: implement me please!
+        throw new UnsupportedOperationException();
+    }
+
     public void search(String search) {
         if(null != search && !StringUtils.EMPTY.equals(search.trim())) {
             setModel(new PlaylistTableModel(
